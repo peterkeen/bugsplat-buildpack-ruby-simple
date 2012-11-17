@@ -26,7 +26,7 @@ echo "-----> Running bundler"
 bin/bundle install --without development:test --path vendor/bundle --binstubs bin/ | indent
 
 
-if bin/rake -n assets:precompile >/dev/null 2>&1
+if bin/rake -n assets:precompile >/dev/null 2>&1; then
     echo "-----> Precompiling assets"
     bin/rake assets:precompile | indent
 fi
