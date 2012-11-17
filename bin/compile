@@ -2,12 +2,12 @@
 
 set -e
 
+build_path=$1
+cache_path=$2
+
 indent() {
   sed -u 's/^/       /'
 }
-
-build_path=$1
-cache_path=$2
 
 echo "-----> Found a Ruby/Simple project"
 echo "-----> Vendoring Ruby"
@@ -19,9 +19,8 @@ cd $build_path
 curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-1.9.3.tgz' -s -o - | tar xzf -
 
 echo "-----> Copying cache"
-cp -a $cache_path/.bundle .
-mkdir -p vendor
-cp -a $cache_path/vendor/bundle vendor/bundle
+cp -a $cache_path/.bundle . || true
+cp -a $cache_path/vendor/bundle vendor/bundle || true
 
 echo "-----> Running bundler"
 bin/bundle install --without development:test --path vendor/bundle --binstubs bin/ | indent
