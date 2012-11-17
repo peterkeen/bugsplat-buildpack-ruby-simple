@@ -12,7 +12,7 @@ cache_path=$2
 echo "-----> Found a Ruby/Simple project"
 echo "-----> Vendoring Ruby"
 
-export PATH="bin:/usr/bin:/usr/local/bin:/usr/sbin"
+export PATH="bin:/usr/bin:/usr/local/bin:/usr/sbin:/bin:/sbin"
 
 cd $build_path
 
