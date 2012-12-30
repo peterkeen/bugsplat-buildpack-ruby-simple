@@ -21,8 +21,9 @@ curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-1.9.3.tgz' -s -o - | t
 curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/bundler-1.2.1.tgz' -s -o - | tar xzf -
 
 echo "-----> Copying cache"
-cp -a $cache_path/.bundle . || true
-cp -a $cache_path/vendor/bundle vendor/bundle || true
+mkdir -p vendor
+[[ -d $cache_path/.bundle ]] && cp -a $cache_path/.bundle .
+[[ -d $cache_path/vendor/bundle ]] && cp -a $cache_path/vendor/bundle vendor/bundle
 
 echo "-----> Running bundler"
 bin/bundle install --without development:test --path vendor/bundle --binstubs bin/ | indent
