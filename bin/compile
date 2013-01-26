@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export PATH="bin:/usr/bin:/usr/local/bin:/usr/sbin:/bin:/sbin"
+export GEM_PATH="lib/ruby/gems/1.9.1:."
+
 set -e
 
 build_path=$1
@@ -10,15 +13,21 @@ indent() {
 }
 
 echo "-----> Found a Ruby/Simple project"
+
 echo "-----> Vendoring Ruby"
 
-export PATH="bin:/usr/bin:/usr/local/bin:/usr/sbin:/bin:/sbin"
-export GEM_PATH="lib/ruby/gems/1.9.1:."
+if [[ ! -e $cache_path/ruby-1.9.3.tgz ]]; then
+    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-1.9.3.tgz' -s -o - > $cache_path/ruby-1.9.3.tgz
+fi
+
+if [[ ! -e $cache_path/bundler-1.2.1.tgz ]]; then
+    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/bundler-1.2.1.tgz' -s -o - > $cache_path/bundler-1.2.1.tgz
+fi
 
 cd $build_path
 
-curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-1.9.3.tgz' -s -o - | tar xzf -
-curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/bundler-1.2.1.tgz' -s -o - | tar xzf -
+tar xzf $cache_path/ruby-1.9.3.tgz
+tar xzf bundler-1.2.1.tgz
 
 echo "-----> Copying cache"
 cp -a $cache_path/.bundle . || true
