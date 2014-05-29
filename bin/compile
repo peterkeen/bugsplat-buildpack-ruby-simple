@@ -21,7 +21,7 @@ if [[ ! -e $cache_path/ruby-1.9.3.tgz ]]; then
 fi
 
 if [[ ! -e $cache_path/bundler-1.2.1.tgz ]]; then
-    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/bundler-1.6.1.tgz' -s -o - > $cache_path/bundler-1.2.1.tgz
+    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/bundler-1.2.1.tgz' -s -o - > $cache_path/bundler-1.2.1.tgz
 fi
 
 cd $build_path
