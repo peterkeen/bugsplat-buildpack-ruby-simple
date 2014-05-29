@@ -35,7 +35,6 @@ mkdir -p vendor
 [[ -d $cache_path/vendor/bundle ]] && cp -a $cache_path/vendor/bundle vendor/bundle
 
 echo "-----> Running bundler"
-bin/gem update --system
 bin/bundle install --without development:test --path vendor/bundle --binstubs bin/ | indent
 
 if bin/rake -n assets:precompile >/dev/null 2>&1; then
