@@ -17,7 +17,7 @@ echo "-----> Found a Ruby/Simple project"
 echo "-----> Vendoring Ruby"
 
 if [[ ! -e $cache_path/ruby-2.1.4.tgz ]]; then
-    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-2.1.4.tgz' -s -o - > $cache_path/ruby-2.1.4.tgz
+    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-2.1.2.tgz' -s -o - > $cache_path/ruby-2.1.2.tgz
 fi
 
 if [[ ! -e $cache_path/bundler-1.6.3.tgz ]]; then
@@ -26,7 +26,7 @@ fi
 
 cd $build_path
 
-tar xzf $cache_path/ruby-2.1.4.tgz
+tar xzf $cache_path/ruby-2.1.2.tgz
 tar xzf $cache_path/bundler-1.6.3.tgz
 
 echo "-----> Copying cache"
