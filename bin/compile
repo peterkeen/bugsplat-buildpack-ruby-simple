@@ -16,7 +16,7 @@ echo "-----> Found a Ruby/Simple project"
 
 echo "-----> Vendoring Ruby"
 
-if [[ ! -e $cache_path/ruby-2.1.4.tgz ]]; then
+if [[ ! -e $cache_path/ruby-2.1.2.tgz ]]; then
     curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-2.1.2.tgz' -s -o - > $cache_path/ruby-2.1.2.tgz
 fi
 
